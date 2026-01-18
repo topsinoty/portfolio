@@ -32,6 +32,7 @@ export default function RootLayout({
       >
         <Background />
         <Navbar />
+        <div id="observerSentinel" />
         {children}
         <Footer />
       </body>

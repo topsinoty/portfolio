@@ -1,11 +1,32 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaFile } from "react-icons/fa";
 import { Logo } from "./logo";
+import clsx from "clsx";
 
 export const Navbar: React.FC = () => {
+  const [hasScrolled, setHasScrolled] = useState(false);
+  useEffect(() => {
+    const observerSentinel = document.getElementById("observerSentinel");
+    if (!observerSentinel) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setHasScrolled(!entry.isIntersecting);
+    });
+
+    observer.observe(observerSentinel);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-background backdrop-blur-md py-4 px-6 md:px-8">
+    <nav
+      className={clsx(
+        "fixed top-0 left-0 right-0 z-40 bg-background backdrop-blur-md py-4 px-6 md:px-8 border-b border-b-transparent transition-colors duration-500",
+        { "border-b-accent!": hasScrolled },
+      )}
+    >
       <div className="max-w-6xl mx-auto flex items-center justify-between font-mono text-xs md:text-md lg:text-lg text-accent">
         <Logo />
 
