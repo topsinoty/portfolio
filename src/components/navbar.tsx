@@ -6,7 +6,7 @@ import { Logo } from "./logo";
 export const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background backdrop-blur-md py-4 px-6 md:px-8">
-      <div className="max-w-6xl mx-auto flex items-center justify-between font-mono text-xs md:text-md text-accent">
+      <div className="max-w-6xl mx-auto flex items-center justify-between font-mono text-xs md:text-md lg:text-lg text-accent">
         <Logo />
 
         <div className="flex items-center gap-4 md:gap-8">
