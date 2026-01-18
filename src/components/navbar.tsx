@@ -1,21 +1,13 @@
 import Link from "next/link";
 import React from "react";
 import { FaFile } from "react-icons/fa";
+import { Logo } from "./logo";
 
 export const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background backdrop-blur-md py-4 px-6 md:px-8">
       <div className="max-w-6xl mx-auto flex items-center justify-between font-mono text-xs md:text-md text-accent">
-        <div className="flex items-center gap-1 select-none">
-          <span className="text-muted">[</span>
-          <Link
-            href="/"
-            className="cursor-pointer text-foreground hover:text-accent transition-colors"
-          >
-            promise_temitope
-          </Link>
-          <span className="text-muted">]</span>
-        </div>
+        <Logo />
 
         <div className="flex items-center gap-4 md:gap-8">
           <Link
