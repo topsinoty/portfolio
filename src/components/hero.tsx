@@ -32,7 +32,7 @@ export const Hero: React.FC = () => {
               ready ? "opacity-100 translate-y-0" : "invisible",
             )}
           >
-            <p className="flex items-center gap-2">
+            <p className="md:inline-flex items-center gap-2">
               Currently a student at{" "}
               <Link
                 href="https://taltech.ee"
@@ -42,7 +42,7 @@ export const Hero: React.FC = () => {
                 #taltech
               </Link>
             </p>
-            <p className="flex items-center gap-2">
+            <p className="inline-flex items-center gap-2">
               Member of{" "}
               <Link
                 href="https://lapikud.ee"
