@@ -13,6 +13,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
+  --color-taltech: var(--taltech);
+  --color-lapikud: var(--lapikud);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
   --text-xxs: 12px;
@@ -27,6 +29,8 @@
     --primary: #00d491;
     --secondary: hsl(245, 100%, 100%);
     --accent: #00bc7d;
+    --taltech: #e4067e;
+    --lapikud: #f0941d;
   }
 }
 
@@ -49,17 +53,23 @@ body {
 }
 @keyframes drift {
   0% {
+    opacity: 0;
     transform: translate(0, 0);
   }
   50% {
     transform: translate(20px, 20px);
   }
   100% {
+    opacity: 1;
     transform: translate(0, 0);
   }
 }
 .animate-drift {
   animation: drift 15s ease-in-out infinite;
+}
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 .typing-cursor::after {
   content: "_";
