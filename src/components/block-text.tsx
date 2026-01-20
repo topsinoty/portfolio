@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from "react";
 
 export interface BlockTextProps {
-  children: string;
+  children: string | string[];
   options?: HTMLAttributes<HTMLSpanElement> & {
     text?: HTMLAttributes<HTMLSpanElement>;
   };

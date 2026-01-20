@@ -1,19 +1,24 @@
 "use client";
-
 import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
+import { BlockText } from "./block-text";
 
 export interface ProjectManifest {
   id: string;
   name: string;
-  version: string;
+  version?: string;
   lastModified: string;
   description: string;
   techStack: string[];
   role: string;
-  complexity: string;
-  outcome: string;
+  complexity?: string;
+  outcome?: string;
+}
+
+export interface ProjectSource {
+  last_updated: string | null;
+  repo_url: string | null;
+  demo_url: string | null;
 }
 
 export interface Project {
@@ -25,6 +30,7 @@ export interface Project {
     content: string;
     type: "emerald" | "zinc" | "amber";
   };
+  source?: ProjectSource;
 }
 
 interface ProjectCardProps {
@@ -34,14 +40,15 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [showManifest, setShowManifest] = useState(false);
 
+  // Mapping reflection types to theme variables
   const getBorderColor = () => {
     switch (project.reflection.type) {
       case "emerald":
-        return "border-emerald-500/20";
+        return "border-primary/20";
       case "zinc":
-        return "border-zinc-500/20";
+        return "border-muted/30";
       case "amber":
-        return "border-amber-500/20";
+        return "border-lapikud/20";
       default:
         return "border-white/5";
     }
@@ -50,109 +57,176 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const getTextColor = () => {
     switch (project.reflection.type) {
       case "emerald":
-        return "text-accent";
+        return "text-primary";
       case "zinc":
-        return "text-zinc-400";
+        return "text-muted-foreground";
       case "amber":
-        return "text-amber-400";
+        return "text-lapikud";
       default:
-        return "text-zinc-400";
+        return "text-muted-foreground";
     }
   };
 
+  const formatKey = (key: string) =>
+    key.replaceAll(/([A-Z])/g, " $1").toLowerCase();
+
   return (
     <article className="group mb-24 last:mb-0">
-      <div className="flex items-center gap-2 mb-4 font-mono text-xxs text-muted px-1">
-        <span>Project:</span>
-        <span className="text-muted-foreground">{project.brief.id}</span>
-        <div className="flex-1 flex justify-end gap-2">
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="/github"
-            className="hover:text-accent transition-colors"
-          >
-            code
-          </Link>
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="/github"
-            className="hover:text-accent transition-colors"
-          >
-            demo
-          </Link>
-        </div>
+      {/* Meta Header */}
+      <div className="flex items-center gap-3 mb-4 font-mono text-xxs text-muted px-1 uppercase tracking-tight">
+        <span className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-background border border-muted/50"></span>
+          id: {project.brief.id}
+        </span>
+        {project.source?.last_updated && (
+          <span className="hidden sm:inline-block opacity-60">
+            <BlockText>
+              fetched:{" "}
+              {new Date(project.source.last_updated).toLocaleDateString()}
+            </BlockText>
+          </span>
+        )}
       </div>
 
       <div
-        className={`relative w-full bg-background/80 rounded-sm overflow-hidden border border-white/5 group-hover:border-white/10 transition-all duration-500 shadow-2xl ${showManifest ? "aspect-4/5 md:aspect-video" : "aspect-video"}`}
+        className={`relative w-full bg-background rounded-sm overflow-hidden border border-white/5 group-hover:border-white/10 transition-all duration-500 shadow-2xl ${
+          showManifest ? "h-125 md:h-112.5" : "aspect-video"
+        }`}
       >
-        {/* Main View: Image or Manifest */}
+        {/* Main View: Image */}
         <div
-          className={`absolute inset-0 transition-opacity duration-500 ${showManifest ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+          className={`absolute inset-0 transition-opacity duration-500 ${
+            showManifest ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
         >
           <Image
+            width={800}
+            height={600}
             src={project.image}
             alt={project.title}
-            width={400}
-            height={300}
-            className="w-full h-full object-cover filter grayscale group-hover:grayscale-10 transition-all duration-700 scale-100 group-hover:scale-[1.02]"
+            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-[1.02]"
           />
+          <button
+            onClick={() => setShowManifest(true)}
+            className="absolute bottom-4 right-4 z-10 px-3 py-1.5 bg-background/90 backdrop-blur border border-white/10 rounded-sm font-mono text-xxs text-muted-foreground hover:text-primary hover:border-primary/30 transition-all shadow-lg"
+          >
+            <BlockText>read_manifest</BlockText>
+          </button>
         </div>
 
+        {/* Manifest Overlay */}
         <div
-          className={`absolute inset-0 bg-muted/10 p-4 md:p-6 font-mono text-xs md:text-sm overflow-auto transition-opacity duration-500 ${showManifest ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          className={`absolute inset-0 bg-background flex flex-col transition-opacity duration-500 ${
+            showManifest ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         >
-          <div className="text-accent mb-2 md:mb-4">{`{`}</div>
-          <div className="pl-3 md:pl-4 space-y-2 md:space-y-1">
-            {Object.entries(project.brief).map(([key, value]) => (
-              <div key={key} className="flex gap-2 flex-wrap md:flex-nowrap">
-                <span className="text-zinc-500 shrink-0">
-                  &quot;{key}&quot;:
-                </span>
-                <span className="text-zinc-200 break-all md:break-normal">
-                  {Array.isArray(value)
-                    ? `[${value.map((v) => `"${v}"`).join(", ")}]`
-                    : `"${value}"`}
-                  ,
-                </span>
-              </div>
-            ))}
+          {/* Header */}
+          <div className="flex-none flex items-center justify-between border-b border-white/5 p-6 pb-4">
+            <div className="flex items-center gap-2">
+              <h4 className="text-primary text-xxs lowercase font-mono tracking-widest font-semibold">
+                /{project.slug}
+              </h4>
+              <span className="text-xxs text-muted font-mono hidden xs:inline">
+                <BlockText>[read_only]</BlockText>
+              </span>
+            </div>
+            <button
+              onClick={() => setShowManifest(false)}
+              className="text-xxs font-mono text-muted hover:text-foreground transition-colors uppercase font-bold tracking-tight"
+            >
+              <BlockText>close_manifest</BlockText>
+            </button>
           </div>
-          <div className="text-accent mt-2 md:mt-4">{`}`}</div>
-        </div>
 
-        {/* Toggle Button */}
-        <button
-          onClick={() => setShowManifest(!showManifest)}
-          className="absolute bottom-4 right-4 z-20 px-3 py-1.5 bg-zinc-900/80 backdrop-blur border border-white/10 rounded-sm font-mono text-xs text-zinc-400 hover:text-accent hover:border-emerald-500/30 transition-all"
-        >
-          [ {showManifest ? "close_brief" : "the_brief"} ]
-        </button>
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-y-auto p-6 pt-4 custom-scrollbar">
+            <div className="space-y-6">
+              {Object.entries(project.brief).map(([key, value]) => {
+                if (key === "id") return null;
+                return (
+                  <div
+                    key={key}
+                    className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4 border-b border-white/3 pb-4 last:border-0"
+                  >
+                    <span className="text-muted text-xxs uppercase tracking-tighter font-mono">
+                      {formatKey(key)}
+                    </span>
+                    <div className="md:col-span-3">
+                      {Array.isArray(value) ? (
+                        <div className="flex flex-wrap gap-1.5">
+                          {value.map((v, i) => (
+                            <span
+                              key={`${v} - ${i}`}
+                              className="text-xxs bg-muted/10 px-2 py-0.5 text-muted-foreground border border-white/10 rounded-sm font-mono leading-none"
+                            >
+                              {v as string}
+                            </span>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="text-muted-foreground text-xs leading-relaxed font-mono">
+                          {value}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Source Controls */}
+              {project.source && (
+                <div className="pt-6 mt-2 border-t border-primary/10 flex flex-wrap gap-x-6 gap-y-4 pb-4">
+                  {project.source.repo_url && (
+                    <a
+                      href={project.source.repo_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-xxs font-mono text-muted hover:text-primary transition-colors"
+                    >
+                      <span className="text-primary opacity-50">/</span>
+                      <span>repository</span>
+                    </a>
+                  )}
+                  {project.source.demo_url && (
+                    <a
+                      href={project.source.demo_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-xxs font-mono text-muted hover:text-primary transition-colors"
+                    >
+                      <span className="text-primary opacity-50">/</span>
+                      <span>live_demo</span>
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
+      {/* Footer Reflection */}
       <div className="mt-8 grid md:grid-cols-12 gap-6">
         <div className="md:col-span-4">
-          <h3 className="text-xl text-secondary font-medium mb-2">
+          <h3 className="text-xl text-foreground font-medium mb-2">
             {project.title}
           </h3>
-          <p className="text-muted text-sm leading-relaxed">
+          <p className="text-muted-foreground text-xs leading-relaxed">
             {project.brief.description}
           </p>
         </div>
 
         <div className="md:col-span-8">
           <div
-            className={`h-full p-4 border-l-2 bg-white/1 ${getBorderColor()}`}
+            className={`h-full p-5 border-l-2 bg-muted/5 ${getBorderColor()}`}
           >
             <div
-              className={`font-mono text-xs uppercase tracking-widest mb-2 opacity-50 ${getTextColor()}`}
+              className={`font-mono text-xxs uppercase tracking-widest mb-3 opacity-80 ${getTextColor()}`}
             >
-              Post dev clarity
+              post_dev_clarity
             </div>
-            <p className="text-muted-foreground text-sm italic leading-relaxed">
-              &quot;{project.reflection.content}&quot;
+            <p className="text-muted-foreground text-xs italic leading-relaxed whitespace-pre-line">
+              {project.reflection.content}
             </p>
           </div>
         </div>
