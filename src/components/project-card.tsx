@@ -2,12 +2,13 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { BlockText } from "./block-text";
+import Link from "next/link";
 
 export interface ProjectManifest {
   id: string;
   name: string;
   version?: string;
-  lastModified: string;
+  lastModified?: string;
   description: string;
   techStack: string[];
   role: string;
@@ -177,7 +178,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               {project.source && (
                 <div className="pt-6 mt-2 border-t border-primary/10 flex flex-wrap gap-x-6 gap-y-4 pb-4">
                   {project.source.repo_url && (
-                    <a
+                    <Link
                       href={project.source.repo_url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -185,10 +186,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     >
                       <span className="text-primary opacity-50">/</span>
                       <span>repository</span>
-                    </a>
+                    </Link>
                   )}
                   {project.source.demo_url && (
-                    <a
+                    <Link
                       href={project.source.demo_url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -196,7 +197,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     >
                       <span className="text-primary opacity-50">/</span>
                       <span>live_demo</span>
-                    </a>
+                    </Link>
                   )}
                 </div>
               )}

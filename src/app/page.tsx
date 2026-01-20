@@ -11,7 +11,6 @@ const PROJECTS: Project[] = [
     brief: {
       id: "flave.ee",
       name: "Flave",
-      lastModified: "2024-03-15", //todo get the acc date from repo
       description:
         "MVP of a finals project. Was supposed to be a recipe search engine. Users can search for recipes based on ingredients they have available.",
       techStack: [
@@ -30,6 +29,11 @@ const PROJECTS: Project[] = [
         "Mobile-first is the most important thing for a consumer product. \n\nAuthentication is different from authorization!!",
       type: "emerald",
     },
+    source: {
+      last_updated: null,
+      repo_url: "https://github.com/topsinoty/flave-ee",
+      demo_url: "https://flave.ee",
+    },
   },
   {
     title: "Remondikohvik info site",
@@ -38,7 +42,6 @@ const PROJECTS: Project[] = [
     brief: {
       id: "remondikohvik.lapikud.ee",
       name: "remondikohvik",
-      lastModified: "2024-03-15", //todo get the acc date from repo
       description:
         "Info page for remondikohvik. An event hosted annually by Lapikud MTÜ. I was one of the major contributors.",
       techStack: ["Next.js", "Typescript", "Tailwind", "Figma"],
@@ -49,6 +52,11 @@ const PROJECTS: Project[] = [
         "Sometimes you may not need a framework. Simple HTML/CSS sometimes is the answer.",
       type: "emerald",
     },
+    source: {
+      repo_url: "https://github.com/Lapikud/remondikohvik",
+      demo_url: "https://remondikohvik.lapikud.ee",
+      last_updated: "12-01-26",
+    },
   },
   {
     title: "Alinea",
@@ -57,7 +65,6 @@ const PROJECTS: Project[] = [
     brief: {
       id: "alinea_hackathon",
       name: "Alinea",
-      lastModified: "2024-03-15", //todo get the acc date from repo
       description:
         "AI-powered application for analyzing workforce, structure, SWOT and other factors for a startup idea.",
       techStack: [
