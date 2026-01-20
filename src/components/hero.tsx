@@ -28,7 +28,7 @@ export const Hero: React.FC = () => {
 
           <div
             className={clsx(
-              "opacity-0 translate-y-2 transition-all duration-700 ease-out",
+              "opacity-0 translate-y-2 flex flex-col not-sm:text-xs mt-2 gap-1 transition-all duration-700 ease-out",
               ready ? "opacity-100 translate-y-0" : "invisible",
             )}
           >
