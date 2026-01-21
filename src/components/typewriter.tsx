@@ -1,7 +1,7 @@
 "use client";
 import clsx from "clsx";
 import { FC, HTMLAttributes, useEffect, useMemo, useState } from "react";
-import { Cluster, lexer } from "~/fn/lexer";
+import { Cluster, lexer } from "~/lib/lexer";
 
 /**
  * Configuration options for the `useTypewriter` hook.
