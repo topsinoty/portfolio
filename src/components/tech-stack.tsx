@@ -16,7 +16,7 @@ export const TechStack: React.FC = () => {
   const tools = ["React", "Next.js", "Tailwind", "Git", "MySQL/Postgres"];
 
   return (
-    <section id="stack" className="py-24 border-t border-white/5">
+    <section id="stack" className="py-16">
       <div className="flex items-center gap-4 mb-16">
         <h2 className="text-sm font-mono text-muted uppercase tracking-widest">
           stack_trace

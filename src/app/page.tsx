@@ -3,6 +3,8 @@ import { Hero } from "~/components/hero";
 import { Project, ProjectCard } from "~/components/project-card";
 import { TechStack } from "~/components/tech-stack";
 import { SpotifyWidget } from "~/components/spotify-widget";
+import { BlockText } from "~/components/block-text";
+import Link from "next/link";
 
 const PROJECTS: Project[] = [
   {
@@ -108,6 +110,23 @@ export default function Home() {
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
+        <Link
+          href="https://github.com/topsinoty"
+          className="mt-16 lg:mt-32 block mx-auto container"
+        >
+          <BlockText
+            className="text-lg! lg:text-xl group/check-my-git hover:border-y-accent border-y border-y-transparent py-4 transition-all **:transition-all **:duration-300 duration-300"
+            options={{
+              className: "text-accent group-hover/check-my-git:opacity-0",
+              text: {
+                className:
+                  "text-secondary group-hover/check-my-git:text-muted-foreground/80",
+              },
+            }}
+          >
+            Hey! Check out my github :p
+          </BlockText>
+        </Link>
       </section>
 
       <TechStack />
