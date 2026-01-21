@@ -1,13 +1,26 @@
+"use client";
+
 import Image from "next/image";
-import { getSpotifyData, LastFMTrack } from "~/lib/get-spotify-data";
+import useSWR from "swr";
+import type { LastFMTrack } from "~/lib/get-spotify-data";
 
-export const revalidate = 15;
-console.log("revalidate");
+const fetcher = (url: string) =>
+  fetch(url).then((res) => res.json() as Promise<LastFMTrack>);
 
-export async function SpotifyWidget() {
-  const data = await getSpotifyData().then(
-    (res) => res.json() as Promise<LastFMTrack>,
+export const SpotifyWidget = () => {
+  const { data, isLoading, error } = useSWR<LastFMTrack>(
+    "/api/spotify",
+    fetcher,
+    {
+      refreshInterval: 15_000,
+      dedupingInterval: 10_000,
+    },
   );
+
+  if (isLoading || error || !data) {
+    return null;
+  }
+
   const isPlaying = Boolean(data["@attr"]?.nowplaying);
 
   return (
@@ -16,7 +29,7 @@ export async function SpotifyWidget() {
         <Image
           width={50}
           height={50}
-          src={data.image[3]["#text"]}
+          src={data.image[2]["#text"]}
           alt={`${data.album["#text"]} - ${data.name}`}
           className="w-full h-full rounded-sm object-cover"
         />
@@ -38,11 +51,13 @@ export async function SpotifyWidget() {
       </div>
       <div className="min-w-0">
         <div className="flex items-center gap-2 mb-1">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
           {isPlaying && (
-            <span className="text-[10px] font-mono text-emerald-500/80 uppercase tracking-tighter">
-              Now Listening
-            </span>
+            <>
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+              <span className="text-[10px] font-mono text-emerald-500/80 uppercase tracking-tighter">
+                Now Listening
+              </span>
+            </>
           )}
         </div>
         <div className="truncate text-sm font-medium text-zinc-200">
@@ -54,4 +69,4 @@ export async function SpotifyWidget() {
       </div>
     </div>
   );
-}
+};

@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 export interface LastFMTrack {
   artist: { "#text": string };
   name: string;
@@ -17,20 +15,17 @@ export interface LastFmApiResponse {
   };
 }
 
-export async function getSpotifyData() {
+type Result<T> = { ok: true; data: T } | { ok: false; error: string };
+
+export async function getSpotifyData(): Promise<Result<LastFMTrack>> {
   const response = await fetch(
-    "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=topsinoty&api_key=5567c519fb22b5203bdff414099a48ae&format=json&limit=1",
-    { next: { revalidate: 15 } },
+    `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.LAST_FM_USER}&api_key=${process.env.LAST_FM_KEY}&format=json&limit=1`,
+    { next: { revalidate: 30 } },
   );
   const json = (await response.json()) as LastFmApiResponse;
   const recent = json.recenttracks?.track?.[0];
 
-  if (!recent) {
-    return NextResponse.json(
-      { error: "No recent track found" },
-      { status: 404 },
-    );
-  }
+  if (!recent) return { ok: false, error: "No recent track found" };
 
-  return NextResponse.json(recent);
+  return { ok: true, data: recent };
 }
