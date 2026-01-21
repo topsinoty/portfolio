@@ -2,6 +2,7 @@ import { CurrentFocus } from "~/components/cuurent-focus";
 import { Hero } from "~/components/hero";
 import { Project, ProjectCard } from "~/components/project-card";
 import { TechStack } from "~/components/tech-stack";
+import { SpotifyWidget } from "~/components/spotify-widget";
 
 const PROJECTS: Project[] = [
   {
@@ -116,7 +117,7 @@ export default function Home() {
             <h2 className="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-6">
               live_state
             </h2>
-            {/* <SpotifyWidget /> */}
+            <SpotifyWidget />
           </div>
           <div className="md:col-span-8">
             <h2 className="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-6">
