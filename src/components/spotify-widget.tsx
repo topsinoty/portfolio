@@ -24,7 +24,14 @@ export const SpotifyWidget = () => {
   const isPlaying = Boolean(data["@attr"]?.nowplaying);
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-zinc-900/50 border border-white/5 rounded-sm">
+    <div
+      title={`
+    Artist: ${data.artist["#text"]}
+    Album: ${data.album["#text"]}
+    Track: ${data.name}
+    `}
+      className="flex items-center gap-4 p-4 bg-muted/20 border border-white/5 rounded-sm"
+    >
       <div className="relative w-12 h-12 shrink-0 group">
         <Image
           width={50}
