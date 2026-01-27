@@ -5,7 +5,7 @@ import { TechStack } from "~/components/tech-stack";
 import { SpotifyWidget } from "~/components/spotify-widget";
 import { BlockText } from "~/components/block-text";
 import Link from "next/link";
-import { TimeWeatherWidget } from "~/components/time-weather-widget";
+import { TimeWidget } from "~/components/time-widget";
 
 const PROJECTS: Project[] = [
   {
@@ -138,7 +138,7 @@ export default function Home() {
               live_state
             </h2>
             <SpotifyWidget />
-            <TimeWeatherWidget />
+            <TimeWidget />
           </div>
           <div className="md:col-span-8">
             <h2 className="text-sm font-mono text-muted uppercase tracking-widest mb-6">
