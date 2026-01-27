@@ -105,7 +105,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             onClick={() => setShowManifest(true)}
             className="absolute bottom-4 right-4 z-10 px-3 py-1.5 bg-background/90 backdrop-blur border border-white/10 rounded-sm font-mono text-xxs text-muted-foreground hover:text-primary hover:border-primary/30 transition-all shadow-lg"
           >
-            <BlockText>read_manifest</BlockText>
+            <BlockText
+              options={{ text: { className: "text-muted-foreground/80" } }}
+            >
+              read_manifest
+            </BlockText>
           </button>
         </div>
 
