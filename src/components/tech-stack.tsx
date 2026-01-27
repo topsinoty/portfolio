@@ -2,7 +2,7 @@ import React from "react";
 import { BlockText } from "./block-text";
 
 const TechBadge = ({ name, type }: { name: string; type: "lang" | "tool" }) => (
-  <div className="group relative flex items-center gap-3 px-3 py-2 bg-zinc-900/30 border border-white/5 hover:border-emerald-500/20 rounded-sm transition-all duration-300">
+  <div className=" backdrop-blur-2xl shadow group relative flex items-center gap-3 px-3 py-2 bg-muted/20 border border-white/5 hover:border-emerald-500/20 rounded-sm transition-all duration-300">
     <div
       className={`w-1 h-1 rounded-full ${type === "lang" ? "bg-primary shadow-sm shadow-accent" : "bg-muted"} group-hover:scale-125 transition-transform`}
     />

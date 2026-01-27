@@ -26,7 +26,7 @@ export const SpotifyWidget = () => {
   return (
     <div
       title={`Artist: ${data.artist["#text"]}\nAlbum: ${data.album["#text"]}\nTrack: ${data.name}`}
-      className="flex items-center gap-4 p-4 bg-muted/10 border border-white/5 rounded-sm"
+      className="flex items-center gap-4 p-4 bg-muted/10 border border-white/5 rounded-sm backdrop-blur-2xl shadow"
     >
       <div className="relative w-12 h-12 shrink-0 group">
         <Image
