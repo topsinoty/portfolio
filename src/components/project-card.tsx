@@ -98,7 +98,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             height={600}
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-[1.02]"
+            quality={100}
+            className="w-full h-full object-fit filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-[1.02]"
           />
           <button
             onClick={() => setShowManifest(true)}
