@@ -48,7 +48,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       case "meh":
         return "border-muted/30";
       case "kinda bad":
-        return "border-amber-400/20";
+        return "border-lapikud/20";
       default:
         return "border-white/5";
     }
