@@ -14,10 +14,18 @@ export default function Home() {
       <Hero />
       <section id="projects" className="py-20">
         <div className="flex items-center gap-4 mb-16">
-          <h2 className="text-sm font-mono text-muted/90 uppercase tracking-widest">
-            featured_projects
+          <h2 className="text-sm font-mono  uppercase tracking-widest">
+            <BlockText
+              options={{
+                text: {
+                  className:
+                    "text-muted-foreground/90 hover:text-primary transition-all",
+                },
+              }}
+            >
+              featured_projects
+            </BlockText>
           </h2>
-          <div className="h-px flex-1 bg-white/5" />
         </div>
 
         <div className="grid grid-cols-1">
