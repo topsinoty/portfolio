@@ -71,20 +71,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     key.replaceAll(/([A-Z])/g, " $1").toLowerCase();
 
   return (
-    <article className="group mb-24 last:mb-0">
-      <div className="flex items-center gap-3 mb-4 font-mono text-xxs text-muted px-1 uppercase tracking-tight">
+    <article className="group mb-24 last:mb-0 backdrop-blur-3xl border-accent/30 transition-all duration-500 rounded-sm hover:border-accent border py-4 px-6">
+      <div className="flex items-center gap-3 mb-4 font-mono text-xxs text-muted-foreground/80 px-1 uppercase tracking-tight">
         <span className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-background border border-muted/50"></span>
-          id: {project.brief.id}
+          <span className="w-1.5 h-1.5 rounded-full bg-background border border-accent" />
+          {project.brief.id}
         </span>
-        {project.source?.last_updated && (
-          <span className="hidden sm:inline-block opacity-60">
-            <BlockText>
-              fetched:{" "}
-              {new Date(project.source.last_updated).toLocaleDateString()}
-            </BlockText>
-          </span>
-        )}
       </div>
 
       <div
