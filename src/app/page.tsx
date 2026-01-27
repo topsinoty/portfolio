@@ -13,22 +13,21 @@ export default function Home() {
     <main className="max-w-6xl mx-auto px-6 container">
       <Hero />
       <section id="projects" className="py-20">
-        <div className="flex items-center gap-4 mb-16">
-          <h2 className="text-sm font-mono  uppercase tracking-widest">
-            <BlockText
-              options={{
-                text: {
-                  className:
-                    "text-muted-foreground/90 hover:text-primary transition-all",
-                },
-              }}
-            >
-              featured_projects
-            </BlockText>
-          </h2>
-        </div>
-
         <div className="grid grid-cols-1">
+          <div className="flex items-center gap-4 mb-16">
+            <h2 className="text-sm font-mono  uppercase tracking-widest">
+              <BlockText
+                options={{
+                  text: {
+                    className:
+                      "text-muted-foreground/90 hover:text-primary transition-all",
+                  },
+                }}
+              >
+                featured_projects
+              </BlockText>
+            </h2>
+          </div>
           {PROJECTS.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
