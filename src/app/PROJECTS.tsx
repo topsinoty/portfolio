@@ -4,7 +4,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Flave",
     slug: "flave",
-    image: "https://picsum.photos/seed/lapikud/1200/800",
+    image: "/images/flave.png",
     brief: {
       id: "flave.ee",
       name: "Flave",
@@ -35,7 +35,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Remondikohvik info site",
     slug: "remondikohvik",
-    image: "https://picsum.photos/seed/lapikud/1200/800",
+    image: "/images/remondikohvik.png",
     brief: {
       id: "remondikohvik.lapikud.ee",
       name: "remondikohvik",
@@ -58,7 +58,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Alinea",
     slug: "alinea",
-    image: "https://picsum.photos/seed/lapikud/1200/800",
+    image: "/images/alinea.png",
     brief: {
       id: "alinea_hackathon",
       name: "Alinea",
