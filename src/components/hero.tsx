@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
   const [ready, setReady] = useState(false);
   setTimeout(() => setReady(true), text.length * speed);
   return (
-    <section className="bg-background pt-32 md:pt-40 pb-16 md:pb-20 px-6 max-w-4xl mx-auto">
+    <section className="pt-32 md:pt-40 pb-16 md:pb-20 px-6 max-w-4xl mx-auto">
       <div className="space-y-8">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white animate-reveal">
           Hello, I&apos;m{" "}
