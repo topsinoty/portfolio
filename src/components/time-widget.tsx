@@ -1,15 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { BlockText } from "./block-text";
 
-export const TimeWidget = () => {
-  const [time, setTime] = useState<Date>(new Date());
+let lastTime = new Date();
 
-  useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
+function subscribe(callback: () => void) {
+  const timer = setInterval(() => {
+    lastTime = new Date();
+    callback();
+  }, 1000);
+  return () => clearInterval(timer);
+}
+
+export const TimeWidget = () => {
+  const timestamp = useSyncExternalStore(
+    subscribe,
+    () => lastTime.getTime(),
+    () => 0,
+  );
+
+  const isServer = timestamp === 0;
+  const time = new Date(timestamp);
 
   const timeOptions: Intl.DateTimeFormatOptions = {
     hour: "2-digit",
@@ -26,12 +38,13 @@ export const TimeWidget = () => {
     timeZone: "Europe/Tallinn",
   };
 
-  const formattedTime = new Intl.DateTimeFormat("en-GB", timeOptions).format(
-    time,
-  );
-  const formattedDate = new Intl.DateTimeFormat("en-GB", dateOptions).format(
-    time,
-  );
+  const formattedTime = isServer
+    ? "--:--:--"
+    : new Intl.DateTimeFormat("en-GB", timeOptions).format(time);
+
+  const formattedDate = isServer
+    ? "---, -- ---"
+    : new Intl.DateTimeFormat("en-GB", dateOptions).format(time);
 
   return (
     <div className="p-4 bg-muted/10 border border-white/5 rounded-sm">
