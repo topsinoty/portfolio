@@ -71,10 +71,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     key.replaceAll(/([A-Z])/g, " $1").toLowerCase();
 
   return (
-    <article className="group mb-24 last:mb-0 backdrop-blur-3xl border-accent/30 transition-all duration-500 rounded-sm hover:border-accent border py-4 px-6">
+    <article
+      className={`group mb-24 last:mb-0 ${getBorderColor()} backdrop-blur-3xl border-accent/30 transition-all duration-500 rounded-sm border py-4 px-6`}
+    >
       <div className="flex items-center gap-3 mb-4 font-mono text-xxs text-muted-foreground/80 px-1 uppercase tracking-tight">
         <span className="flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-background border border-accent" />
+          <span
+            className={`w-1.5 h-1.5 rounded-full bg-accent ${getBorderColor()} border-4 `}
+          />
           {project.brief.id}
         </span>
       </div>
