@@ -31,7 +31,7 @@ const PROJECTS: Project[] = [
     reflection: {
       content:
         "Mobile-first is the most important thing for a consumer product. \n\nAuthentication is different from authorization!!",
-      type: "emerald",
+      type: "good",
     },
     source: {
       last_updated: null,
@@ -54,7 +54,7 @@ const PROJECTS: Project[] = [
     reflection: {
       content:
         "Sometimes you may not need a framework. Simple HTML/CSS sometimes is the answer.",
-      type: "emerald",
+      type: "good",
     },
     source: {
       repo_url: "https://github.com/Lapikud/remondikohvik",
@@ -84,7 +84,7 @@ const PROJECTS: Project[] = [
     reflection: {
       content:
         "For quick prototyping, don't be ashamed to use AI. AI might not be creative but it is statistical.",
-      type: "amber",
+      type: "kinda bad",
     },
     source: {
       last_updated: null,

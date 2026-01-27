@@ -29,7 +29,7 @@ export interface Project {
   brief: ProjectManifest;
   reflection: {
     content: string;
-    type: "emerald" | "zinc" | "amber";
+    type: "good" | "meh" | "kinda bad";
   };
   source?: ProjectSource;
 }
@@ -41,14 +41,13 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [showManifest, setShowManifest] = useState(false);
 
-  // Mapping reflection types to theme variables
   const getBorderColor = () => {
     switch (project.reflection.type) {
-      case "emerald":
+      case "good":
         return "border-primary/20";
-      case "zinc":
+      case "meh":
         return "border-muted/30";
-      case "amber":
+      case "kinda bad":
         return "border-lapikud/20";
       default:
         return "border-white/5";
@@ -57,11 +56,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   const getTextColor = () => {
     switch (project.reflection.type) {
-      case "emerald":
+      case "good":
         return "text-primary";
-      case "zinc":
+      case "meh":
         return "text-muted-foreground";
-      case "amber":
+      case "kinda bad":
         return "text-lapikud";
       default:
         return "text-muted-foreground";
@@ -73,7 +72,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <article className="group mb-24 last:mb-0">
-      {/* Meta Header */}
       <div className="flex items-center gap-3 mb-4 font-mono text-xxs text-muted px-1 uppercase tracking-tight">
         <span className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-background border border-muted/50"></span>
@@ -94,7 +92,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           showManifest ? "h-125 md:h-112.5" : "aspect-video"
         }`}
       >
-        {/* Main View: Image */}
         <div
           className={`absolute inset-0 transition-opacity duration-500 ${
             showManifest ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -115,13 +112,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </button>
         </div>
 
-        {/* Manifest Overlay */}
         <div
           className={`absolute inset-0 bg-background flex flex-col transition-opacity duration-500 ${
             showManifest ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          {/* Header */}
           <div className="flex-none flex items-center justify-between border-b border-white/5 p-6 pb-4">
             <div className="flex items-center gap-2">
               <h4 className="text-primary text-xxs lowercase font-mono tracking-widest font-semibold">
@@ -139,7 +134,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </button>
           </div>
 
-          {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto p-6 pt-4 custom-scrollbar">
             <div className="space-y-6">
               {Object.entries(project.brief).map(([key, value]) => {
@@ -174,7 +168,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 );
               })}
 
-              {/* Source Controls */}
               {project.source && (
                 <div className="pt-6 mt-2 border-t border-primary/10 flex flex-wrap gap-x-6 gap-y-4 pb-4">
                   {project.source.repo_url && (
@@ -206,7 +199,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
 
-      {/* Footer Reflection */}
       <div className="mt-8 grid md:grid-cols-12 gap-6">
         <div className="md:col-span-4">
           <h3 className="text-xl text-foreground font-medium mb-2">
