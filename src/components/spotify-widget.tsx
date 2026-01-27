@@ -25,12 +25,8 @@ export const SpotifyWidget = () => {
 
   return (
     <div
-      title={`
-    Artist: ${data.artist["#text"]}
-    Album: ${data.album["#text"]}
-    Track: ${data.name}
-    `}
-      className="flex items-center gap-4 p-4 bg-muted/20 border border-white/5 rounded-sm"
+      title={`Artist: ${data.artist["#text"]}\nAlbum: ${data.album["#text"]}\nTrack: ${data.name}`}
+      className="flex items-center gap-4 p-4 bg-muted/10 border border-white/5 rounded-sm"
     >
       <div className="relative w-12 h-12 shrink-0 group">
         <Image
@@ -38,18 +34,18 @@ export const SpotifyWidget = () => {
           height={50}
           src={data.image[2]["#text"]}
           alt={`${data.album["#text"]} - ${data.name}`}
-          className="w-full h-full rounded-sm object-cover"
+          className="w-full h-full rounded-sm object-cover opacity-80"
         />
         {isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-sm">
-            <div className="flex gap-0.5 items-end h-4">
-              <div className="w-1 bg-emerald-500 animate-[bounce_1s_ease-in-out_infinite]" />
+          <div className="absolute inset-0 flex items-center justify-center bg-background/60 rounded-sm">
+            <div className="flex gap-0.5 items-end h-3">
+              <div className="w-0.5 bg-primary animate-[bounce_1s_ease-in-out_infinite]" />
               <div
-                className="w-1 bg-emerald-500 animate-[bounce_1.2s_ease-in-out_infinite]"
+                className="w-0.5 bg-primary animate-[bounce_1.2s_ease-in-out_infinite]"
                 style={{ animationDelay: "0.1s" }}
               />
               <div
-                className="w-1 bg-emerald-500 animate-[bounce_0.8s_ease-in-out_infinite]"
+                className="w-0.5 bg-primary animate-[bounce_0.8s_ease-in-out_infinite]"
                 style={{ animationDelay: "0.2s" }}
               />
             </div>
@@ -60,18 +56,18 @@ export const SpotifyWidget = () => {
         <div className="flex items-center gap-2 mb-1">
           {isPlaying && (
             <>
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-              <span className="text-[10px] font-mono text-emerald-500/80 uppercase tracking-tighter">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_var(--primary)]" />
+              <span className="text-xxs font-mono text-primary uppercase tracking-tighter">
                 Now Listening
               </span>
             </>
           )}
         </div>
-        <div className="truncate text-sm font-medium text-zinc-200">
+        <div className="truncate text-sm font-medium text-foreground">
           {data.name}
         </div>
-        <div className="truncate text-xs text-zinc-500">
-          {data.artist["#text"]} | {data.album["#text"]}
+        <div className="truncate text-xxs font-mono text-muted-foreground">
+          {data.artist["#text"]} — {data.album["#text"]}
         </div>
       </div>
     </div>
