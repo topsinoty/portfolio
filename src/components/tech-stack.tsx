@@ -4,9 +4,9 @@ import { BlockText } from "./block-text";
 const TechBadge = ({ name, type }: { name: string; type: "lang" | "tool" }) => (
   <div className=" backdrop-blur-2xl shadow group relative flex items-center gap-3 px-3 py-2 bg-muted/20 border border-white/5 hover:border-emerald-500/20 rounded-sm transition-all duration-300">
     <div
-      className={`w-1 h-1 rounded-full ${type === "lang" ? "bg-primary shadow-sm shadow-accent" : "bg-muted"} group-hover:scale-125 transition-transform`}
+      className={`w-1 h-1 rounded-full bg-primary/60 shadow-lg ${type === "lang" ? "shadow-accent" : "shadow-muted"} group-hover:scale-115 rounded-full transition-transform`}
     />
-    <span className="font-mono text-xs text-secondary group-hover:text-secondary transition-colors uppercase tracking-tight">
+    <span className="font-mono text-xs text-secondary not-dark:text-foreground transition-colors uppercase tracking-tight">
       {name}
     </span>
   </div>
@@ -31,7 +31,7 @@ export const TechStack: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="md:col-span-5">
           <div className="top-24">
-            <h3 className="text-xl text-secondary font-medium mb-4">
+            <h3 className="text-xl text-secondary not-dark:text-foreground font-medium mb-4">
               The core logic.
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">

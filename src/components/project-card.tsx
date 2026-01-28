@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { BlockText } from "./block-text";
 import Link from "next/link";
+import clsx from "clsx";
 
 export interface ProjectManifest {
   id: string;
@@ -72,7 +73,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <article
-      className={`group mb-24 last:mb-0 ${getBorderColor()} backdrop-blur-3xl border-accent/30 transition-all duration-500 rounded-sm border py-4 px-6`}
+      className={`group mb-24 last:mb-0 ${getBorderColor()} backdrop-blur-3xl not-dark:shadow-xl border-accent/30 transition-all duration-500 rounded-sm border py-4 px-6`}
     >
       <div className="flex items-center gap-3 mb-4 font-mono text-xxs text-muted-foreground/80 px-1 uppercase tracking-tight">
         <span className="flex items-center gap-1.5">
@@ -84,7 +85,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </div>
 
       <div
-        className={`relative w-full bg-background rounded-sm overflow-hidden border border-white/5 group-hover:border-white/10 transition-all duration-500 shadow-2xl ${
+        className={`relative w-full bg-background rounded-sm overflow-hidden border border-white/5 not-dark:border-black/10 dark:group-hover:border-white/10 transition-all duration-500 dark:shadow-2xl ${
           showManifest ? "h-125 md:h-112.5" : "aspect-video"
         }`}
       >
@@ -103,7 +104,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           />
           <button
             onClick={() => setShowManifest(true)}
-            className="absolute bottom-4 right-4 z-10 px-3 py-1.5 bg-background/90 backdrop-blur border border-white/10 rounded-sm font-mono text-xxs text-muted-foreground hover:text-primary hover:border-primary/30 transition-all shadow-lg"
+            className="absolute bottom-4 right-4 z-10 px-3 py-1.5 bg-background/90 backdrop-blur border not-dark:border-black/20 border-white/10 rounded-sm font-mono text-xxs text-muted-foreground hover:text-primary hover:border-primary/30 transition-all shadow-lg"
           >
             <BlockText
               options={{
@@ -121,7 +122,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             showManifest ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex-none flex items-center justify-between border-b border-white/5 p-6 pb-4">
+          <div className="flex-none flex items-center justify-between border-b border-white/5 not-dark:border-black/10 p-6 pb-4">
             <div className="flex items-center gap-2">
               <h4 className="text-primary text-xxs lowercase font-mono tracking-widest font-semibold">
                 /{project.slug}
@@ -140,14 +141,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
           <div className="flex-1 overflow-y-auto p-6 pt-4 custom-scrollbar">
             <div className="space-y-6">
-              {Object.entries(project.brief).map(([key, value]) => {
+              {Object.entries(project.brief).map(([key, value], i, arr) => {
+                const isLast = i === arr.length - 1;
                 if (key === "id") return null;
                 return (
                   <div
                     key={key}
-                    className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4 border-b border-white/3 pb-4 last:border-0"
+                    className={clsx(
+                      "grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4 not-last:border-b not-dark:border-black/6 border-white/3 pb-4 last:border-0",
+                      isLast && "border-b-0!",
+                    )}
                   >
-                    <span className="text-muted text-xxs uppercase tracking-tighter font-mono">
+                    <span className="text-foreground text-xxs uppercase tracking-tighter font-mono">
                       {formatKey(key)}
                     </span>
                     <div className="md:col-span-3">
@@ -156,7 +161,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                           {value.map((v, i) => (
                             <span
                               key={`${v} - ${i}`}
-                              className="text-xxs bg-muted/10 px-2 py-0.5 text-muted-foreground border border-white/10 rounded-sm font-mono leading-none"
+                              className="text-xxs bg-foreground/10 px-2 py-0.5 text-muted-foreground border border-white/10 rounded-sm font-mono leading-none"
                             >
                               {v as string}
                             </span>
@@ -173,7 +178,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               })}
 
               {project.source && (
-                <div className="pt-6 mt-2 border-t border-primary/10 flex flex-wrap gap-x-6 gap-y-4 pb-4">
+                <div className="pt-6 mt-2 border-t text-foreground border-primary/10 flex flex-wrap gap-x-6 gap-y-4 pb-4">
                   {project.source.repo_url && (
                     <Link
                       href={project.source.repo_url}
@@ -182,7 +187,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       className="flex items-center gap-2 text-xxs font-mono text-muted hover:text-primary transition-colors"
                     >
                       <span className="text-primary opacity-50">/</span>
-                      <span>repository</span>
+                      <span className="text-foreground">repository</span>
                     </Link>
                   )}
                   {project.source.demo_url && (
@@ -193,7 +198,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       className="flex items-center gap-2 text-xxs font-mono text-muted hover:text-primary transition-colors"
                     >
                       <span className="text-primary opacity-50">/</span>
-                      <span>live_demo</span>
+                      <span className="text-foreground">live_demo</span>
                     </Link>
                   )}
                 </div>

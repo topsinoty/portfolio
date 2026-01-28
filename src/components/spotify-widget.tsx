@@ -66,7 +66,7 @@ export const SpotifyWidget = () => {
         <div className="truncate text-sm font-medium text-foreground">
           {data.name}
         </div>
-        <div className="truncate text-xxs font-mono text-muted">
+        <div className="truncate text-xxs font-mono text-foreground/60">
           {data.artist["#text"]} — {data.album["#text"]}
         </div>
       </div>

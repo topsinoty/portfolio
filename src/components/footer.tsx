@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const Footer = () => (
-  <footer className="py-20 items-center justify-center flex flex-col mt-20 border-t border-white/5 text-center font-mono text-xs text-muted">
+  <footer className="py-20 items-center justify-center flex flex-col mt-20 border-t border-white/5 text-center font-mono text-xs text-foreground/80">
     <div className="mb-4 gap-2 flex">
       <Link
         href="https://github.com/topsinoty"

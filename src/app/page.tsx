@@ -42,7 +42,7 @@ export default function Home() {
               className: "text-accent group-hover/check-my-git:opacity-0",
               text: {
                 className:
-                  "text-secondary group-hover/check-my-git:text-muted-foreground/80",
+                  "text-secondary not-dark:text-foreground group-hover/check-my-git:text-muted-foreground/80",
               },
             }}
           >

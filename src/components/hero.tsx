@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
   return (
     <section className="pt-32 md:pt-40 pb-16 md:pb-20 px-6 max-w-4xl mx-auto">
       <div className="space-y-8">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white animate-reveal">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground animate-reveal">
           Hello, I&apos;m{" "}
           <span className="font-semibold text-primary">Promise Temitope</span>
         </h1>
@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
                 .getElementById("projects")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="group cursor-pointer inline-flex items-center gap-2 text-sm md:text-md font-mono uppercase tracking-widest text-muted-foreground hover:text-primary transition-all py-1.5 border-b border-muted hover:border-primary"
+            className="group cursor-pointer inline-flex items-center gap-2 text-sm md:text-md font-mono uppercase tracking-widest text-muted-foreground hover:text-primary transition-all py-1.5 border-b not-dark:border-black/50 border-muted hover:border-primary"
           >
             <span>view_projects</span>
             <FaLongArrowAltRight className="size-3 transition-transform group-hover:translate-x-1" />
