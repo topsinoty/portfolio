@@ -47,7 +47,7 @@ export const TimeWidget = () => {
     : new Intl.DateTimeFormat("en-GB", dateOptions).format(time);
 
   return (
-    <div className="p-4 bg-muted/10 border border-white/5 rounded-sm  backdrop-blur-2xl shadow">
+    <div className="p-4 bg-muted/10 border border-white/5 rounded-sm max-w-full backdrop-blur-2xl shadow">
       <div className="flex items-center gap-2 mb-3">
         <BlockText
           options={{ text: { className: "font-mono text-xxs text-primary" } }}

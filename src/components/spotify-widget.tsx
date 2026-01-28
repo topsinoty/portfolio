@@ -26,7 +26,7 @@ export const SpotifyWidget = () => {
   return (
     <div
       title={`Artist: ${data.artist["#text"]}\nAlbum: ${data.album["#text"]}\nTrack: ${data.name}`}
-      className="flex items-center gap-4 p-4 bg-muted/10 border border-white/5 rounded-sm backdrop-blur-2xl shadow"
+      className="flex items-center gap-4 p-4 bg-muted/10 border border-white/5 rounded-sm backdrop-blur-2xl shadow max-w-full"
     >
       <div className="relative w-12 h-12 shrink-0 group">
         <Image
@@ -66,7 +66,7 @@ export const SpotifyWidget = () => {
         <div className="truncate text-sm font-medium text-foreground">
           {data.name}
         </div>
-        <div className="truncate text-xxs font-mono text-foreground/60">
+        <div className="truncate text-ellipsis text-xxs font-mono text-foreground/60">
           {data.artist["#text"]} — {data.album["#text"]}
         </div>
       </div>
