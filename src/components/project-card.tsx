@@ -125,9 +125,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         >
           <div className="flex-none flex items-center justify-between border-b border-white/5 not-dark:border-black/10 p-6 pb-4">
             <div className="flex items-center gap-2">
-              <h4 className="text-primary text-xxs lowercase font-mono tracking-widest font-semibold">
+              <span className="text-primary text-xxs lowercase font-mono tracking-widest font-semibold">
                 /{project.slug}
-              </h4>
+              </span>
               <span className="text-xxs text-muted font-mono hidden xs:inline">
                 <BlockText>[read_only]</BlockText>
               </span>
