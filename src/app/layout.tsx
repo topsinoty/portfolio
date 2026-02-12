@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "~/components/navbar";
 import { Footer } from "~/components/footer";
 import { Background } from "~/components/background-texture";
+import { seoMetadata } from "./seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,10 +16,7 @@ const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Promise | Topsinoty",
-  description: "My Personal portfolio. I like to code :p",
-};
+export const metadata: Metadata = seoMetadata;
 
 export default function RootLayout({
   children,
