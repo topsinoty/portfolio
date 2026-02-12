@@ -31,6 +31,7 @@ export const PROJECTS: Project[] = [
       repo_url: "https://github.com/topsinoty/flave-ee",
       demo_url: "https://flave.ee",
     },
+    quality: 80,
   },
   {
     title: "Remondikohvik info site",

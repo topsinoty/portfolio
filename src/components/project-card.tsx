@@ -24,6 +24,7 @@ export interface ProjectSource {
 }
 
 export interface Project {
+  quality?: number;
   title: string;
   slug: string;
   image: string;
@@ -99,7 +100,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             height={600}
             src={project.image}
             alt={project.title}
-            quality={100}
+            quality={project?.quality ?? 100}
             className="w-full h-full object-fit filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-[1.02]"
           />
           <button
