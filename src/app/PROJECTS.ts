@@ -9,7 +9,7 @@ export const PROJECTS: Project[] = [
       id: "flave.ee",
       name: "Flave",
       description:
-        "MVP of a finals project. Was supposed to be a recipe search engine. Users can search for recipes based on ingredients they have available.",
+        "Final project MVP for a recipe search application where users can find recipes based on available ingredients.",
       techStack: [
         "Next.js",
         "Typescript",
@@ -63,20 +63,20 @@ export const PROJECTS: Project[] = [
       id: "alinea_hackathon",
       name: "Alinea",
       description:
-        "AI-powered application for analyzing workforce, structure, SWOT and other factors for a startup idea.",
+        "A hackathon project where we built a web interface for organizing and evaluating business ideas.",
       techStack: [
         "Next.js",
         "Typescript",
         "Tailwind",
         "Postgres",
         "Prisma",
-        "Ollama - Llama 3.2:3b",
+        "Local LLM integration",
       ],
       role: "Frontend Engineer, Project Lead",
     },
     reflection: {
       content:
-        "For quick prototyping, don't be ashamed to use AI. AI might not be creative but it is statistical.",
+        "Hackathons reward speed, but structure still matters. Clear boundaries and simple architecture make iteration easier.",
       type: "kinda bad",
     },
     source: {

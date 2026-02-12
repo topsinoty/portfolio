@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   alias: "topsinoty",
   url: "https://topsinoty.com",
   description:
-    "Fullstack developer specializing in Next.js, TypeScript, and Python.",
+    "Computer science student and frontend developer building practical web applications with strong fundamentals in React, Next.js, and TypeScript. I like to code!",
 };
 
 export const seoMetadata: Metadata = {
