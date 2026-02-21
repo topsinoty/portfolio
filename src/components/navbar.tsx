@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
             github
           </Link>
           <Link
-            href="/promise_temitope.pdf"
+            href="/resume"
             className="group relative px-3 py-1.5 bg-accent/5 border border-accent/30 text-accent/90 hover:text-accent hover:bg-accent/10 hover:border-accent/50 rounded-md transition-all overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-1.5">
