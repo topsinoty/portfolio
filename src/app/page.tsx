@@ -54,7 +54,7 @@ export default function Home() {
       <TechStack />
       <section id="personal" className="py-20 border-t border-white/5">
         <div className="grid md:grid-cols-12 gap-6">
-          <div className="md:col-span-4 space-y-6">
+          <div className="md:col-span-4 space-y-6 overflow-hidden">
             <h2 className="text-sm font-mono text-muted-foreground/80 uppercase tracking-widest mb-6">
               live_state
             </h2>
